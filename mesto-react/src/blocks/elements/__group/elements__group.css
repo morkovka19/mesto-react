@@ -1,0 +1,10 @@
+.elements__group{
+    padding: 0;
+    display: grid;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+    column-gap: 17px;
+    width: 100%;
+    row-gap: 20px;
+    margin: 0;
+}

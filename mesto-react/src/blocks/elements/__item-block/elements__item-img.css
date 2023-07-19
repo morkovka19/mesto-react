@@ -1,0 +1,10 @@
+.elements__item-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: calc(246/282*100%);
+    align-items: center;
+    padding-bottom: 33px;
+    box-sizing: border-box;
+}
+

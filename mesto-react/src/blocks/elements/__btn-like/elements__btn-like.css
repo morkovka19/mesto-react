@@ -1,0 +1,17 @@
+.elements__btn-like{
+    min-width: 22px;
+    min-height: 22px;
+    transition: opacity linear .3;
+    background-color: #ffffff;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-image: url('../../../images/icon/like-no-active-min.svg');
+    background-repeat: no-repeat;
+}
+
+.elements__btn-like:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
