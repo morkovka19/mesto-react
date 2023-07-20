@@ -4,9 +4,9 @@ import React from 'react';
 class Header extends React.Component{
     render(){
         return (
-        <header className="header root__container-center">'
-            <img className="header__logo" src={HeaderLogo} alt="логотип место" />
-        </header>
+            <header className="header root__container-center">'
+                <img className="header__logo" src={HeaderLogo} alt="логотип место" />
+            </header>
         )
     }
 }

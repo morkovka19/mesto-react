@@ -1,11 +1,12 @@
 class Api{
     constructor(options){
-        this._cahort = options.cahort;
+        this._cohort = options.cohort;
         this._id = options.id;
+        this._startLink = `https://mesto.nomoreparties.co/v1/${this._cohort}`;
     }
 
     getInitialsCard(){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._cahort}/cards`, {
+        return fetch(`${this._startLink}/cards`, {
             headers: {
                 authorization: this._id,
             }
@@ -13,7 +14,7 @@ class Api{
     }
 
     getUserInfo(){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._cahort}/users/me`, {
+        return fetch(`${this._startLink}/users/me`, {
             headers: {
                 authorization: this._id,
             }
@@ -21,7 +22,7 @@ class Api{
     }
 
     editProfile({nameNew, aboutNew}){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._cahort}/users/me`, {
+        return fetch(`${this._startLink}/users/me`, {
             headers: {
                 authorization: this._id,
                 'Content-Type': 'application/json'
@@ -36,7 +37,7 @@ class Api{
     }
 
     addNewCard({nameNew, linkNew}){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._cahort}/cards`, {
+        return fetch(`${this._startLink}/cards`, {
             method: 'POST',
             headers: {
                 authorization: this._id,
@@ -50,7 +51,7 @@ class Api{
     }
 
     addLike(id){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._cahort}/cards/${id}/likes`, {
+        return fetch(`${this._startLink}/cards/${id}/likes`, {
             method: 'PUT',
             headers: {
                 authorization: this._id,
@@ -59,7 +60,7 @@ class Api{
     }
 
     deleteLike(id){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._cahort}/cards/${id}/likes`, {
+        return fetch(`${this._startLink}/cards/${id}/likes`, {
             method: 'DELETE',
             headers: {
                 authorization: this._id,
@@ -68,7 +69,7 @@ class Api{
     }
 
     deleteCard(id){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._cahort}/cards/${id}`, {
+        return fetch(`${this._startLink}/cards/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: this._id,
@@ -77,7 +78,7 @@ class Api{
     }
 
     editAvatar(avatar){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._cahort}/users/me/avatar`, {
+        return fetch(`${this._startLink}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
                 authorization: this._id,
@@ -97,5 +98,5 @@ class Api{
     }
 }
 
-const api = new Api({cahort: 'cohort-70', id: '14bb670c-f56d-4056-9e87-e524535efbde'});
+const api = new Api({cohort: 'cohort-70', id: '14bb670c-f56d-4056-9e87-e524535efbde'});
 export default api;
