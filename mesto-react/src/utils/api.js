@@ -96,6 +96,15 @@ class Api{
         }
         return res.json();
     }
+
+    changeLikeCardStatus(id, isLike){
+        if (isLike){
+            return this.deleteLike(id);
+        }
+        else{
+            return this.addLike(id);
+        }
+    }
 }
 
 const api = new Api({cohort: 'cohort-70', id: '14bb670c-f56d-4056-9e87-e524535efbde'});
