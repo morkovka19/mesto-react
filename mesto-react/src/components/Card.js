@@ -2,6 +2,7 @@ import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 class Card extends React.Component{
+    static contextType = CurrentUserContext;
                                  
     constructor(props){
         super(props);

@@ -13,7 +13,7 @@ class PopupWithForm extends React.Component{
                     <button className="popup__btn" onClick={this.props.onClose} type="reset"><img className="popup__icon" src={closeIcon}
                             alt="иконка крестик" /></button>
                     <h2 className="popup__title">{this.props.title}</h2>
-                    <form className="popup__form" name={this.props.name} noValidate>
+                    <form className="popup__form" name={this.props.name} noValidate onSubmit={this.props.onSubmit}>
                         {this.props.children}
                         <button className="popup__submit" type="submit" value="Сохранить">{this.props.nameButton}</button>
                     </form>

@@ -7,7 +7,8 @@ import React from 'react';
 import api from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import EditPopupProfile from './EditPopupProfile.js';
-
+import EditAvatarPopup from './EditAvatarPopup.js';
+import AddPlacePopup from './AddPlacePopup.js';
 
 
  class  App extends React.Component {
@@ -84,6 +85,34 @@ import EditPopupProfile from './EditPopupProfile.js';
         })
     }
 
+
+    handleUpdateUser = ({nameNew, aboutNew})=>{
+        api.editProfile({nameNew, aboutNew}).then((userInfoNew) =>{
+            this.setState({
+                currentUser: userInfoNew,
+                isEditProfilePopupOpen: false,
+            })
+        }).catch(err => console.log(err))
+    }
+
+    handleUpdateAvatar = (avatarNew) =>{
+        api.editAvatar(avatarNew).then((newUser) =>{
+            this.setState({
+                currentUser: newUser,
+                isEditAvatarPopupOpen: false
+            })
+        }).catch(err => console.log(err))
+    }
+
+    handleAddPlaceSubmit  = ({nameNew, linkNew}) =>{
+        api.addNewCard({nameNew, linkNew}).then((newCard) =>{
+            this.setCardsState([newCard, ...this.state.cards]);
+            this.setState({
+                isAddPlacePopupOpen: false
+            })
+        }).catch(err => console.log(err))
+    }
+
   render() {
     return (
             <CurrentUserContext.Provider value={this.state.currentUser}>
@@ -98,41 +127,16 @@ import EditPopupProfile from './EditPopupProfile.js';
                         onCardDelete={this.handleCardDelete}
                         />
                     <Footer />
-                   <EditPopupProfile  isOpen={this.state.isEditProfilePopupOpen} onClose={this.closeAllPopups}/>
-                    <PopupWithForm title="Новое место" 
-                        onClose={this.closeAllPopups} 
-                        name="new-card" 
-                        nameButton="Создать" 
-                        isOpen={this.state.isAddPlacePopupOpen} 
-                        children={
-                                <fieldset className="popup__inputs-container">
-                                    <input className="popup__input popup__input_name_name" maxLength="30" minLength="2" type="text" required placeholder="Название"
-                                        id="name-img" name="name-img" />
-                                        <span id="name-img-error" className="error error_name_name"></span>
-                                    <input className="popup__input popup__input_name_info" type="url" required
-                                        placeholder="Ссылка на картинку" id="href" name="info-img" />
-                                    <span id="info-img-error" className="error error_name_info"></span>
-                                </fieldset>}
-                    />
-                    <PopupWithForm title="Обновить аватар" 
-                        onClose={this.closeAllPopups} 
-                        nameButton="Сохранить" 
-                        name="edit-avatar" 
-                        isOpen={this.state.isEditAvatarPopupOpen} 
-                        children={ 
-                                <fieldset className="popup__inputs-container">
-                                    <input className="popup__input popup__input_name_info" type="url" required
-                                        placeholder="Ссылка на картинку" id="href-img" name="info-img-link" />
-                                    <span id="info-img-error-avatar" className="error error_name_info"></span>
-                                </fieldset>} 
-                    />
-
+                    <EditPopupProfile onUpdateUser={this.handleUpdateUser} isOpen={this.state.isEditProfilePopupOpen} onClose={this.closeAllPopups}/>
+                    <EditAvatarPopup onUpdateAvatar={this.handleUpdateAvatar} isOpen={this.state.isEditAvatarPopupOpen} onClose={this.closeAllPopups}/>
+                    <AddPlacePopup onAddPlace={this.handleAddPlaceSubmit} isOpen={this.state.isAddPlacePopupOpen} onClose={this.closeAllPopups}/>
+                    <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}/>
                     <PopupWithForm title="Вы уверены?" 
                         onClose={this.closeAllPopups} 
                         name="delete-card" 
                         nameButton="Да" 
                     />
-                    <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups}/>
+                    
                 </div>
             </CurrentUserContext.Provider>
         );
