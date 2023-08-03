@@ -14,7 +14,6 @@ class EditPopupProfile extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.context.name);
     this.setState({
       name: this.context?.name,
       description: this.context?.about,
