@@ -1,0 +1,19 @@
+.profile__block-pen {
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0);
+  position: absolute;
+  min-width: 120px;
+  min-height: 120px;
+  border: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.profile__block-pen:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.profile__block-pen:hover .profile__icon-pen {
+  display: block;
+}

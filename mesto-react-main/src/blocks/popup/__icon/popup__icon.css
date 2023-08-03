@@ -1,0 +1,10 @@
+.popup__icon {
+  max-width: 32px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 636px) {
+  .popup__icon {
+    max-width: 20px;
+  }
+}
